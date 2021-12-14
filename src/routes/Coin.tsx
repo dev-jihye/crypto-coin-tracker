@@ -34,7 +34,7 @@ const Loader = styled.span`
 const Overview = styled.div`
   display: flex;
   justify-content: space-between;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.2);
   padding: 10px 20px;
   border-radius: 5px;
 `;
@@ -67,7 +67,7 @@ const Tab = styled.span<{ isActive: boolean }>`
   text-transform: uppercase;
   font-size: 12px;
   font-weight: 400;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.2);
   padding: 7px 0px;
   border-radius: 5px;
   color: ${(props) =>
@@ -135,8 +135,11 @@ interface PriceData {
     };
   };
 }
+interface ICoinProps {
+  isDark: boolean;
+}
 
-function Coin() {
+function Coin({ isDark }: ICoinProps) {
   const { coinId } = useParams();
   const { state } = useLocation();
   const priceMatch = useMatch("/:coinId/price");
@@ -206,7 +209,7 @@ function Coin() {
             <Route path="price" element={<Price />}></Route>
             <Route
               path="chart"
-              element={<Chart coinId={coinId as string} />}
+              element={<Chart coinId={coinId as string} isDark={isDark} />}
             ></Route>
           </Routes>
         </>
